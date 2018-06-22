@@ -23,15 +23,26 @@ passport.use(
         clientSecret: keys.googleClientSecret,
         callbackURL: '/auth/google/callback',
         proxy: true  // trust all proxy server default
-    }, (accessToken, refreshToken, profile, done) => {  
-        User.findOne({googleId: profile.id}).then((existingUser) => { // do a query, then return a promise
-            if(existingUser) {
-                done(null, existingUser);
-            } else {
-                new User({googleId: profile.id})
-                    .save() // use save() persist to database
-                    .then(user => done(null, user));
-            }
-        })
-    })
+    }, 
+    // use async, await instead of promise, then
+    async (accessToken, refreshToken, profile, done) => {  
+        const existingUser = await User.findOne({googleId: profile.id});
+        if(existingUser) {
+            return done(null, existingUser);
+        }
+        const user = await new User({googleId: profile.id}).save() // use save() persist to database
+        done(null, user);
+    }
+    // (accessToken, refreshToken, profile, done) => {  
+    //     User.findOne({googleId: profile.id}).then((existingUser) => { // do a query, then return a promise
+    //         if(existingUser) {
+    //             done(null, existingUser);
+    //         } else {
+    //             new User({googleId: profile.id})
+    //                 .save() 
+    //                 .then(user => done(null, user));
+    //         }
+    //     })
+    //  }
+    )
 );

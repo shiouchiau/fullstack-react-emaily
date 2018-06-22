@@ -9,11 +9,17 @@ module.exports = app => {
     );
 
     // deal with callback from google server (the code variable)
-    app.get('/auth/google/callback', passport.authenticate('google'));
+    app.get(
+        '/auth/google/callback', 
+        passport.authenticate('google'),
+        (req, res) => {
+            res.redirect('/surveys');
+        }
+    );
 
     app.get('/api/logout', (req, res) => {
         req.logout();
-        res.send(req.user);
+        res.redirect('/');
     });
 
     // test if cookie session work well
