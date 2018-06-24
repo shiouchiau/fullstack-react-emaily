@@ -25,7 +25,7 @@ require('./routes/authRoutes')(app);
 require('./routes/billingRoutes')(app);
 
 if (process.env.NODE_ENV === 'production') {
-    // Express will serve up production assets like our main.js or main.css file.
+    // Express will serve up production assets like our main.js or main.css file!
     app.use(express.static('/build/static'));
     // Express will servr up index.js file if it doesn't recognize the route.
     const path = require('path');
