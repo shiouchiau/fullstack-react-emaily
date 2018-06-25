@@ -32,7 +32,7 @@ if (process.env.NODE_ENV === 'production') {
     app.get('*', (req, res) => {
         console.log('dirname ', __dirname);
         console.log('filename  ', __filename)
-        res.sendFile(path.resolve(__dirname, 'build', 'static', 'index.html'));
+        res.sendFile(path.resolve(__dirname, 'client', 'build', 'static', 'index.html'));
     });
 }
 
