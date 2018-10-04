@@ -7,7 +7,7 @@ See demo [here](https://limitless-forest-85384.herokuapp.com/).
 - Authentication with Google OAuth. Handling Passport callbacks and cookies for user login/logout, and connecting Mongoose to MLab Mongo DB.
 - Handling payments with Stripe Serivice
 - Production environment built in Heroku cloud application platform. 
-- Use materilize for styling, a modern responsive CSS framework based on material design.
+- Use Materialize for styling, a modern responsive CSS framework based on material design.
 
 ## Technology Use
 - Frontend: React, Redux, Passport.js, Materialize 
